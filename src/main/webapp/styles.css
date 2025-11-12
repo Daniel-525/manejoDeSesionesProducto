@@ -1,0 +1,244 @@
+/* ==== Variables globales (Blanco y Negro) ==== */
+:root {
+    /* Paleta de colores: Blanco, Negro y Grises elegantes */
+    --fondo: #0e0e0e; /* Negro suave */
+    --tarjeta: #1a1a1a; /* Gris oscuro para contenedores */
+    --texto: #f5f5f5; /* Blanco humo para texto principal */
+    --secundario: #b5b5b5; /* Gris claro para texto secundario */
+
+    --principal: #ffffff; /* Blanco puro como color principal */
+    --principal-hover: #e5e5e5; /* Blanco grisáceo en hover */
+
+    --borde: #2a2a2a; /* Gris intermedio para bordes */
+    --sombra: rgba(0, 0, 0, 0.7); /* Sombra profunda */
+
+    --espaciado-unit: 8px;
+    --radio-borde: 12px;
+}
+
+/* ==== Reset básico ==== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ==== Estructura principal ==== */
+body {
+    font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--fondo);
+    color: var(--texto);
+    min-height: 100vh;
+    padding: calc(var(--espaciado-unit) * 5);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    line-height: 1.6;
+    font-size: 16px;
+}
+
+.contenedor {
+    width: 100%;
+    max-width: 900px;
+    background: var(--tarjeta);
+    border: 1px solid var(--borde);
+    border-radius: calc(var(--radio-borde) * 1.5);
+    padding: calc(var(--espaciado-unit) * 4);
+    box-shadow: 0 12px 40px var(--sombra);
+    transition: all 0.4s ease;
+}
+
+.contenedor:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 50px rgba(255, 255, 255, 0.1);
+}
+
+/* ==== Tipografía ==== */
+h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--principal);
+    margin-bottom: calc(var(--espaciado-unit) * 2);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+h2 {
+    font-size: 1.7rem;
+    font-weight: 600;
+    color: var(--texto);
+    margin-bottom: var(--espaciado-unit);
+}
+
+h3 {
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: var(--secundario);
+    margin-bottom: var(--espaciado-unit);
+}
+
+p {
+    color: var(--secundario);
+    margin-bottom: calc(var(--espaciado-unit) * 2);
+    line-height: 1.7;
+}
+
+/* ==== Encabezado ==== */
+.encabezado {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: var(--espaciado-unit);
+    border-bottom: 1px solid var(--borde);
+    margin-bottom: calc(var(--espaciado-unit) * 3);
+}
+
+.etiqueta {
+    background: var(--principal);
+    color: var(--fondo);
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* ==== Formularios ==== */
+form {
+    display: grid;
+    gap: calc(var(--espaciado-unit) * 2);
+    margin-top: calc(var(--espaciado-unit) * 2);
+}
+
+input, textarea {
+    background: #0f0f0f;
+    color: var(--texto);
+    border: 1px solid var(--borde);
+    border-radius: var(--radio-borde);
+    padding: 14px 16px;
+    outline: none;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+input::placeholder, textarea::placeholder {
+    color: var(--secundario);
+    opacity: 0.6;
+}
+
+input:focus, textarea:focus {
+    border-color: var(--principal);
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2);
+    background: #151515;
+}
+
+/* ==== Lista de acciones ==== */
+ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--espaciado-unit);
+    margin-top: calc(var(--espaciado-unit) * 3);
+    padding-left: 0;
+}
+
+/* ==== Botones ==== */
+a.boton, button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    background: var(--principal);
+    color: var(--fondo);
+    border: none;
+    padding: 12px 24px;
+    border-radius: var(--radio-borde);
+    cursor: pointer;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+}
+
+a.boton.secundario, button.secundario {
+    background: transparent;
+    border: 1px solid var(--borde);
+    color: var(--secundario);
+    box-shadow: none;
+}
+
+a.boton:hover, button:hover {
+    background: var(--principal-hover);
+    color: #000;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(255, 255, 255, 0.3);
+}
+
+a.boton.secundario:hover, button.secundario:hover {
+    border-color: var(--principal);
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--principal);
+}
+
+/* ==== Tablas ==== */
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: calc(var(--espaciado-unit) * 3);
+    border: 1px solid var(--borde);
+    border-radius: var(--radio-borde);
+    overflow: hidden;
+    box-shadow: 0 5px 15px var(--sombra);
+}
+
+thead th {
+    background: #111;
+    color: #f9fafb;
+    text-align: left;
+    padding: 14px 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+}
+
+tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+tbody tr:hover {
+    background: #1f1f1f;
+}
+
+tbody tr:nth-child(even) {
+    background: #151515;
+}
+
+td {
+    padding: 12px 16px;
+    border-top: 1px solid var(--borde);
+}
+
+/* ==== Alertas ==== */
+.alerta {
+    background: rgba(255, 255, 255, 0.05);
+    color: #f87171;
+    border: 1px solid #ef4444;
+    padding: 12px 16px;
+    border-radius: var(--radio-borde);
+    margin-top: calc(var(--espaciado-unit) * 2);
+    font-weight: 500;
+}
+
+/* ==== Pie ==== */
+.pie {
+    margin-top: calc(var(--espaciado-unit) * 4);
+    padding-top: var(--espaciado-unit);
+    border-top: 1px solid var(--borde);
+    text-align: center;
+    color: var(--secundario);
+    font-size: 0.85rem;
+}
