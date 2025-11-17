@@ -1,0 +1,216 @@
+/* ==== RESET BASICO ==== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ==== BODY (Fondo oscuro) ==== */
+body {
+    background-color: #111; /* Fondo negro */
+    color: #f5f5f5; /* Color de texto claro */
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Alineamos al centro de la página para la vista de prueba */
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* ==== CONTENEDOR PRINCIPAL (Caja oscura redondeada) ==== */
+.contenedor {
+    background-color: #1a1a1a; /* Gris oscuro para el contenedor */
+    border-radius: 16px;
+    padding: 30px;
+    width: 95%;
+    max-width: 700px; /* Hacemos el contenedor un poco más ancho */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5); /* Sombra más pronunciada */
+    transition: transform 0.2s;
+    border: none; /* Quitamos el borde blanco de la versión anterior */
+}
+
+.contenedor:hover {
+    transform: translateY(-3px);
+}
+
+/* ==== ENCABEZADO (Manejo de cookies Http y Opciones) ==== */
+.encabezado {
+    display: flex;
+    justify-content: space-between; /* Alinea el título a la izquierda y el subtítulo a la derecha */
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #333; /* Línea separadora sutil */
+}
+
+.titulo {
+    text-align: left; /* Título alineado a la izquierda */
+    font-size: 24px;
+    font-weight: bold;
+    color: #f5f5f5; /* Título blanco */
+    margin: 0; /* Eliminar margen para el flex */
+}
+
+.etiqueta {
+    background-color: #fff; /* Fondo blanco */
+    color: #111; /* Texto negro */
+    padding: 8px 15px;
+    border-radius: 16px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+/* ==== MENSAJES ==== */
+.mensaje {
+    text-align: center;
+    color: #aaa;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+/* ==== FORMULARIOS (Mantenemos los estilos de inputs oscuros) ==== */
+form .campo {
+    margin-bottom: 18px;
+}
+
+form label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #f5f5f5;
+    font-size: 14px;
+}
+
+form input[type="text"],
+form input[type="password"] {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #333; /* Borde oscuro */
+    border-radius: 8px;
+    font-size: 14px;
+    background-color: #2a2a2a; /* Fondo de input oscuro */
+    color: #f5f5f5; /* Texto del input claro */
+    transition: border 0.2s, background 0.2s;
+}
+
+form input[type="text"]:focus,
+form input[type="password"]:focus {
+    border-color: #fff; /* Borde blanco al enfocar */
+    background-color: #333;
+    outline: none;
+}
+
+/* ==== ACCIONES (Disposición horizontal) ==== */
+.acciones {
+    display: flex; /* Mantiene los botones en línea */
+    justify-content: flex-start; /* Alineación a la izquierda */
+    flex-wrap: wrap;
+    gap: 15px; /* Espacio entre los botones */
+    padding-top: 10px;
+}
+
+/* ==== BOTONES (Estilos oscuros/claros) ==== */
+.boton {
+    display: inline-block;
+    padding: 12px 25px;
+    /* Botón Principal: Fondo blanco, Texto negro (Mostrar productos html) */
+    background-color: #fff;
+    color: #111;
+    text-decoration: none;
+    border: none;
+    border-radius: 8px; /* Borde redondeado suave */
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    transition: 0.3s;
+    margin-bottom: 0; /* No necesitamos margen vertical con el flex */
+}
+
+.boton:hover {
+    background-color: #ccc;
+}
+
+.boton.secundario,
+.boton.login,
+.boton.logout {
+    /* Botones Secundarios: Fondo oscuro, Borde sutil, Texto blanco */
+    background-color: #111;
+    color: #f5f5f5;
+    border: 1px solid #333; /* Borde sutil para definir el área */
+    border-radius: 8px;
+    /* Aseguramos que los secundarios no tengan el estilo blanco del .boton */
+}
+
+.boton.secundario:hover,
+.boton.login:hover,
+.boton.logout:hover {
+    background-color: #333;
+    color: #fff;
+    border-color: #555;
+}
+
+
+/* Estilo específico para la lista del index (si se usa <ul>) */
+.lista {
+    list-style: none;
+    padding: 0;
+    display: flex; /* Hacemos la lista horizontal */
+    gap: 15px; /* Espacio entre elementos */
+}
+
+.lista li {
+    margin-bottom: 0; /* Quitamos el margen de lista */
+}
+
+
+/* ==== TABLAS (Estilo oscuro) ==== */
+.tabla-carro {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.tabla-carro th, .tabla-carro td {
+    border: 1px solid #333; /* Borde oscuro */
+    padding: 10px 12px;
+    text-align: left;
+    color: #f5f5f5; /* Texto de tabla claro */
+}
+
+.tabla-carro th {
+    background-color: #2a2a2a; /* Fondo de encabezado oscuro */
+    font-weight: 600;
+}
+
+/* Total de la tabla */
+.total-label {
+    text-align: right;
+    font-weight: bold;
+    background-color: #2a2a2a;
+}
+
+.total-valor {
+    font-weight: bold;
+    background-color: #2a2a2a;
+}
+
+/* ==== FORMULARIO PDF ==== */
+.formulario-pdf {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* ==== EFECTOS ADICIONALES ==== */
+a {
+    text-decoration: none;
+    transition: color 0.3s;
+    color: #aaa;
+}
+
+a:hover {
+    color: #fff;
+}
