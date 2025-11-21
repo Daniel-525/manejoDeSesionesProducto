@@ -2,5 +2,11 @@
 <project version="4">
   <component name="DataSourcePerFileMappings">
     <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/22b9cd40-0356-44f1-be50-c3be4c9bc480/console.sql" value="22b9cd40-0356-44f1-be50-c3be4c9bc480" />
+    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/22b9cd40-0356-44f1-be50-c3be4c9bc480/console_1.sql" value="22b9cd40-0356-44f1-be50-c3be4c9bc480" />
+    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/22b9cd40-0356-44f1-be50-c3be4c9bc480/console_2.sql" value="22b9cd40-0356-44f1-be50-c3be4c9bc480" />
+    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/22b9cd40-0356-44f1-be50-c3be4c9bc480/console_3.sql" value="22b9cd40-0356-44f1-be50-c3be4c9bc480" />
+    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/22b9cd40-0356-44f1-be50-c3be4c9bc480/console_4.sql" value="22b9cd40-0356-44f1-be50-c3be4c9bc480" />
+    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/22b9cd40-0356-44f1-be50-c3be4c9bc480/console_5.sql" value="22b9cd40-0356-44f1-be50-c3be4c9bc480" />
+    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/22b9cd40-0356-44f1-be50-c3be4c9bc480/console_6.sql" value="22b9cd40-0356-44f1-be50-c3be4c9bc480" />
   </component>
 </project>

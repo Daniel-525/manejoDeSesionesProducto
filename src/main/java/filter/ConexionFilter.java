@@ -2,6 +2,7 @@ package filter;
 
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletResponse;
 import util.ConexionBDD;
 
@@ -9,69 +10,60 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-
-//sirve para restrigir ciertas calses a los usuarios
-//Implenmetamos una anotacion esta anotacion
+//Implementamos una anotacion. Esta anotacion
 //me sirve para poder utilizar la conexion en cualquier parte
-//de mi aplicacion
+// de mi aplicacion
+
 @WebFilter("/*")
 public class ConexionFilter implements Filter {
     /*
-     * Una clase filter en java es un objeto que realiza la tarea de filtrado
-     * e las solicitudes cliente servidor
-     * respuesta a un recurso: los filtros se puedes ejecutar
-     * en servidores compatibles con Jakarta EE
-     * los filtros interceptan solicitudes y respuestas de manera
-     * dinamica para transformar. El filtrado se realiza mediante el
-     * doFilter*/
+    * Una clase en filter en java es un objeto que realiza tareas
+    * de filtrado en las soliciyudes cliente servidor
+    * respuesta a un recurso: los filtros se pueden ejecutar
+    * en servidores compatibles con jakarta ee
+    * los filtros interceptan solicitudes y respuestas de manera
+    * dinamica para transformar o utilizar la informacion
+    * que contienen . El filtrado se realiza mediante el
+    * metodo doFilter
+     */
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException, ServletException {
         /*
-         * request: peticion que hace el cliente
-         * response: respuesta del servidor
-         * filterChain: es una clase de filtro que representa el flujo
-         * del procesamiento, este metodo llama al metodo chain.doFilter
-         * dentro de un filtro pasa las solicitud, el siguiente paso la clase
-         * filtra o devuelve el recurso destino que puede ser un servlet
-         * o jsp */
+        * request: peticion que hace el cliente
+        * response: respuesta al servidor
+        * filterchain: es una clase de filtro que representa el
+        * flujo de procesamiento, este metodo llama al metodo chain.dofilter(request, response)
+        * dentro de un filtro para la solicitud, el siguiente paso la clase filtra o te devuelve el recurso
+        * destino que puede ser un servlet o un jsp
+         */
 
-        //Ontenemos la conexion
-        try(Connection conn = ConexionBDD.getConnection()){
-            //Verificamos que la conexion realizada  o se cambie a autocommit
-            //(configuracion automatica a la base de satos y cada instruccion
-            // SQL)
-            if(conn.getAutoCommit()){
+        //obtenemos la conexion
+
+        try (Connection conn = ConexionBDD.getConnection()) {
+            // verificamos que la conexion realizada o se cambien a autocommit
+            //(configuracion automatica a la base de datos y cada instruccion
+            //sql)
+            if (conn.getAutoCommit()){
                 conn.setAutoCommit(false);
             }
-            try{
-                //Agregamos la conexion como un atributo e la solicitud
-                //esto nos permite que otros componentes como servlets o DAOS
+            try {
+                //agregamos la conexion como un atributo en la solicitud
+                //esto nos permite que otros componentes como servlets o daos
                 //puedan acceder a la conexion
                 request.setAttribute("conn", conn);
-                //pasa la solicitd y la respuesta al siguiente filtro
+                //pasa la solicitud y la respuesta al siguiente filtro o al recurso
                 //destino
                 filterChain.doFilter(request, response);
                 conn.commit();
-
-                // *********** CORRECCIÓN DEL ERROR ***********
-                // NO se puede usar (SQLException | Exception)
-                // porque SQLException es hija de Exception
-
-            } catch(SQLException e) {
+            }catch (SQLException e){
                 conn.rollback();
-                ((HttpServletResponse) response)
-                        .sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
-                e.printStackTrace();
-
-            } catch(Exception e) {
-                conn.rollback();
-                ((HttpServletResponse) response)
-                        .sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
+                //enviamos un codigo de error HTTP 500 al cliente
+                //indicando un problema interno del servidor
+                ((HttpServletResponse)response).sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
                 e.printStackTrace();
             }
-
-        }catch (SQLException throwables){
+        } catch (SQLException throwables){
             throwables.printStackTrace();
         }
     }

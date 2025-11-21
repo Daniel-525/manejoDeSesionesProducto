@@ -1,10 +1,4 @@
 package models;
-/*
- * Autor: Cristian Arias
- * Fecha y version: 12/11/2025 | Version: 1.0
- * Descripcion: Clase que representa un item dentro del carro de compras.
- * Contiene la cantidad y el producto asociado, y permite calcular su subtotal.
- */
 
 import java.util.Objects;
 
@@ -12,6 +6,7 @@ public class ItemCarro {
     private int cantidad;
     private Producto producto;
 
+    // Constructor de la clase
     public ItemCarro(int cantidad, Producto producto) {
         this.cantidad = cantidad;
         this.producto = producto;
@@ -23,7 +18,6 @@ public class ItemCarro {
 
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
-
     }
 
     public Producto getProducto() {
@@ -34,27 +28,33 @@ public class ItemCarro {
         this.producto = producto;
     }
 
-    /*Creamos un método para comprara si ya un producto esta el la ista del carrito
-     * de compras y no repertilo*/
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+
         ItemCarro itemCarro = (ItemCarro) o;
-        return Objects.equals(producto.getId(), itemCarro.producto.getId())
-                && Objects.equals(cantidad, itemCarro.cantidad);
+        // Solo comparamos por ID del producto, no por cantidad
+        return Objects.equals(producto.getIdProducto(), itemCarro.producto.getIdProducto());
     }
 
+    @Override
+    public int hashCode() {
+        // Solo usar el ID del producto
+        return Objects.hash(producto.getIdProducto());
+    }
 
-    public double getSubtotal() {
+    public double getSubTotal() {
         return cantidad * producto.getPrecio();
     }
 
+    // Metodo para calcular el IVA del 15%
     public double getIva() {
-        double iva = 0.16;
-        return getSubtotal() * iva;
+        return getSubTotal() * 0.15;
     }
 
-
+    // Metodo para obtener el total con IVA
+    public double getTotalConIva() {
+        return getSubTotal() + getIva();
+    }
 }
